@@ -35,7 +35,6 @@ main(int argc, char **argv)
 
     while (!win_sentinel && SDL_PollEvent(&event))
     {
-        // TODO
         switch(event.type)
         {
             case SDL_QUIT:
@@ -43,21 +42,11 @@ main(int argc, char **argv)
                 break;
 
             case SDL_KEYDOWN:
-                enum keydown_sig sig = get_keydown_sig  
-        }
-
-        while (SDL_PollEvent(&event))
-            switch(event.type)
-            {
-                case SDL_KEYDOWN:
-                    switch(event.key.keysym.sym)
-                    {
-                        case SDLK_ESCAPE:
-                            win_sentinel = true;
-                            break;
-                    }
+                // TODO: Implement actual function pointer lookup for keypress handler.
+                // Currently does jack shit
+                win_sentinel = true;
                 break;
-            }
+        }
 
         SDL_BlitSurface(image, NULL, surface, NULL);
         SDL_UpdateWindowSurface(window);
