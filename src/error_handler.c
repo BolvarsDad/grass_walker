@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-#include "../includes/error_handling.h"
+#include "../includes/error_handler.h"
 
-enum err_codes
+enum sdl_err_codes
 validate_sdl_components(SDL_Window *window, SDL_Surface *surface, SDL_Surface *image)
 {
     if (window == NULL)

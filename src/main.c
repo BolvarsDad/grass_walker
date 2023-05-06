@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 
 #include "../includes/key_handler.h"
+#include "../includes/error_handler.h"
 
 #define WINWIDTH 680
 #define WINLEN   480
@@ -13,7 +14,7 @@ main(int argc, char **argv)
 {
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
-        fprintf(stderr, "Unable to initialize SDL");
+        fprintf(stderr, "Unable to initialize SDL Video Instance");
         return 1;
     }
 
