@@ -3,11 +3,11 @@
 #include <assert.h>
 #include <SDL2/SDL.h>
 
-#include "../includes/key_handler.h"
+#include "../includes/event_handler.h"
 #include "../includes/error_handler.h"
 
-#define WINWIDTH 680
-#define WINLEN   480
+#define WINWIDTH 1920
+#define WINLEN   1080
 
 int
 main(int argc, char **argv)
@@ -19,9 +19,10 @@ main(int argc, char **argv)
     }
 
     bool win_sentinel = false;
+    SDL_Event event;
     const uint8_t *keyboard_state = SDL_GetKeyboardState(NULL);
  
-    SDL_Window  *window  = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINWIDTH, WINLEN, 0);
+    SDL_Window  *window  = SDL_CreateWindow("Grass walker", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINWIDTH, WINLEN, 0);
     SDL_Surface *surface = SDL_GetWindowSurface(window);
     SDL_Surface *image   = SDL_LoadBMP("../resources/textures/thing.bmp");
 
@@ -32,11 +33,20 @@ main(int argc, char **argv)
         return 1;
     }
 
-    while (!win_sentinel)
+    while (!win_sentinel && SDL_PollEvent(&event))
     {
-        SDL_Event event;
+        // TODO
+        switch(event.type)
+        {
+            case SDL_QUIT:
+                win_sentinel = true;
+                break;
 
-        while (SDL_PollEvent(&event) > 0)
+            case SDL_KEYDOWN:
+                enum keydown_sig sig = get_keydown_sig  
+        }
+
+        while (SDL_PollEvent(&event))
             switch(event.type)
             {
                 case SDL_KEYDOWN:

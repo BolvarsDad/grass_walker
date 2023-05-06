@@ -15,9 +15,11 @@ static char const *sdl_err_codes_str[SDLERR_END] = {
     "Ok",
     "Unable to initialize SDL Window",
     "Unable to initialize SDL Surface",
-    "Unable to initialize SDL Bitmap Image"
+    "Unable to initialize SDL Bitmap Image",
 };
 
-enum sdl_err_codes validate_sdl_components(SDL_Window *window, SDL_Surface *surface, SDL_Surface *image);
+enum sdl_err_codes validate_sdl_components(SDL_Window   *window,
+                                           SDL_Surface  *surface,
+                                           SDL_Surface  *image);
 
 #endif
