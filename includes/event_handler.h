@@ -4,4 +4,8 @@
 #include <stdint.h>
 #include <SDL2/SDL.h>
 
+void (*keyboard_state)(uint8_t) = SDL_GetKeyboardState;
+
+
+
 #endif

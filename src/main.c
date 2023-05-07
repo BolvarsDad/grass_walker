@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <SDL2/SDL.h>
 
-#include "../includes/event_handler.h"
+//#include "../includes/event_handler.h"
 #include "../includes/error_handler.h"
 
 #define WINWIDTH 1920
@@ -33,23 +33,31 @@ main(int argc, char **argv)
         return 1;
     }
 
-    while (!win_sentinel && SDL_PollEvent(&event))
+    while (!win_sentinel)
     {
-        switch(event.type)
+        while (SDL_PollEvent(&event))
         {
-            case SDL_QUIT:
-                win_sentinel = true;
-                break;
+            // TODO:
+            // Update this to use a lookup table of function pointers.
+            // Without commenting out `#include "../includes/event_handler.h"` this won't compile.
+            switch(event.type)
+            {
+                case SDL_QUIT:
+                    win_sentinel = true;
+                    break;
 
-            case SDL_KEYDOWN:
-                // TODO: Implement actual function pointer lookup for keypress handler.
-                // Currently does jack shit
-                win_sentinel = true;
-                break;
+                case SDL_KEYDOWN:
+                    switch (event.key.keysym.sym)
+                    {
+                        case SDLK_ESCAPE:
+                            win_sentinel = true;
+                            break;
+                    }
+            }
+
+            SDL_BlitSurface(image, NULL, surface, NULL);
+            SDL_UpdateWindowSurface(window);
         }
-
-        SDL_BlitSurface(image, NULL, surface, NULL);
-        SDL_UpdateWindowSurface(window);
     }
 
     return 0;
